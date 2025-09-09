@@ -138,18 +138,18 @@ nodegroup = [
 
 helm_charts = [
   # Metrics Server
-  {
-    name       = "metrics-server"
-    repository = "https://kubernetes-sigs.github.io/metrics-server/"
-    chart      = "metrics-server"
-    namespace  = "kube-system"
-    wait       = false
-    version    = "3.12.2"
-    set = [{
-      name  = "apiService.create"
-      value = "true"
-    }]
-  },
+  # {
+  #   name       = "metrics-server"
+  #   repository = "https://kubernetes-sigs.github.io/metrics-server/"
+  #   chart      = "metrics-server"
+  #   namespace  = "kube-system"
+  #   wait       = false
+  #   version    = "3.12.2"
+  #   set = [{
+  #     name  = "apiService.create"
+  #     value = "true"
+  #   }]
+  # },
   # Kube State Metrics
   {
     name             = "kube-state-metrics"

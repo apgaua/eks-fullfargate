@@ -20,23 +20,44 @@
 | EKS Networking | 1 | https://github.com/apgaua/eks-networking | VPC structure to deploy EKS |
 | This one | 2 | https://github.com/apgaua/eks-fullfargate | EKS with node groups and Fargate |
 
-## Requirements
+{{ } # EKS Course repository
 
-No requirements.
+## Commands
 
-## Providers
+| Terraform | Description |
+|--------------------|-------------|
+| terraform fmt --recursive | Format terraform files |
+| terraform init -backend-config=environment/dev/backend.tfvars | Init terraform backend config|
+| terraform validate | Validate terraform workflow |
+| terraform apply -auto-approve -var-file=environment/dev/terraform.tfvars | Create structure |
+| terraform destroy -auto-approve -var-file=environment/dev/terraform.tfvars | Destroy structure |
 
-No providers.
+## Structure
+![Estrutura terraform](diagrama.png)
 
-## Modules
+## Repository dependency
+| Project | Priority | URL | Description |
+|---------|----------|-----|-------------|
+| EKS Networking | 1 | https://github.com/apgaua/eks-networking | VPC structure to deploy EKS |
+| This one | 2 | https://github.com/apgaua/eks-fullfargate | EKS with node groups and Fargate | 
+## Author
 
-| Name | Source | Version |
-|------|--------|---------|
-| <a name="module_eks_cluster"></a> [eks\_cluster](#module\_eks\_cluster) | github.com/apgaua/terraform-modules//eks-cluster | n/a |
+👤 **Apgaua S**
 
-## Resources
+* LinkedIn: [@apgauasousa](https://linkedin.com/in/apgauasousa)
 
-No resources.
+## 🤝 Contributing
+
+Contributions, issues and feature requests are welcome!<br />Feel free to check [issues page](/issues). 
+
+## Show your support
+
+Give a ⭐️ if this project helped you!
+
+## 📝 License
+
+Copyright © 2025 [Apgaua S](https://github.com/apgaua).<br />
+This project is [MIT](LICENSE) licensed. [0xc0003c1620 0xc0003c1920 0xc0003c1320 0xc0003c1260 0xc0003c14a0 0xc0003c1560 0xc0003c1860 0xc0003c17a0 0xc0003c13e0 0xc0003c16e0] [0xc0003c19e0] [] [] [] [] [0xc0003c1620 0xc0003c1920 0xc0003c1260 0xc0003c14a0 0xc0003c1560 0xc0003c1860 0xc0003c17a0 0xc0003c13e0 0xc0003c16e0] [0xc0003c1320]}
 
 ## Inputs
 
@@ -55,7 +76,8 @@ No resources.
 
 ## Outputs
 
-No outputs.
+No outputs.  
+
 
 ## Author
 

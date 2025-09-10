@@ -15,9 +15,9 @@ cluster = [
       bootstrap_cluster_creator_admin_permissions = true
     }
 
-    enable_fargate            = true
+    eks_mode                  = "FULLFARGATE" # FARGATE | NODEGROUPS | FULLFARGATE
     enable_cluster_autoscaler = true
-    fargate_namespace         = ["chip"]
+    fargate_namespace         = ["teste"] # If eks_mode is FULLFARGATE, it will be set ["*"] as default.
 
     #Standard: This option supports the Kubernetes version for 14 months after the release date. There is no additional cost. When standard support ends, your cluster will be auto upgraded to the next version.
     #Extended: This option supports the Kubernetes version for 26 months after the release date. The extended support period has an additional hourly cost that begins after the standard support period ends. When extended support ends, your cluster will be auto upgraded to the next version.
@@ -25,24 +25,13 @@ cluster = [
 
     enabled_cluster_log_types = ["api", "audit", "authenticator", "controllerManager", "scheduler"]
 
-    addons = [ # https://docs.aws.amazon.com/eks/latest/userguide/eks-add-ons.html
-      {
-        name    = "vpc-cni"
-        version = "v1.19.5-eksbuild.1" # https://docs.aws.amazon.com/eks/latest/userguide/managing-vpc-cni.html
-      },
-      {
-        name    = "coredns"
-        version = "v1.11.4-eksbuild.2" # https://docs.aws.amazon.com/eks/latest/userguide/coredns.html
-      },
-      {
-        name    = "kube-proxy"
-        version = "v1.33.0-eksbuild.2" # https://docs.aws.amazon.com/eks/latest/userguide/managing-kube-proxy.html
-      },
-      {
-        name    = "eks-node-monitoring-agent" # Does not support kubernetes version 133
-        version = "v1.4.0-eksbuild.2"         # https://docs.aws.amazon.com/eks/latest/userguide/workloads-add-ons-available-eks.html#add-ons-eks-node-monitoring-agent
-      }
-  ] }
+addons = [
+  { name = "vpc-cni", version = "v1.19.5-eksbuild.1" }, # https://docs.aws.amazon.com/eks/latest/userguide/managing-vpc-cni.html
+  { name = "coredns", version = "v1.11.4-eksbuild.2" }, # https://docs.aws.amazon.com/eks/latest/userguide/coredns.html
+  { name = "kube-proxy", version = "v1.33.0-eksbuild.2" }, # https://docs.aws.amazon.com/eks/latest/userguide/managing-kube-proxy.html
+  { name = "eks-node-monitoring-agent", version = "v1.4.0-eksbuild.2" } # https://docs.aws.amazon.com/eks/latest/userguide/workloads-add-ons-available-eks.html#add-ons-eks-node-monitoring-agent
+]
+  }
 ]
 
 ################################################################################
@@ -145,10 +134,9 @@ helm_charts = [
   #   namespace  = "kube-system"
   #   wait       = false
   #   version    = "3.12.2"
-  #   set = [{
-  #     name  = "apiService.create"
-  #     value = "true"
-  #   }]
+  #   set = [
+  #{ name  = "apiService.create" , value = "true" }
+  #]
   # },
   # Kube State Metrics
   {
@@ -157,20 +145,11 @@ helm_charts = [
     chart            = "kube-state-metrics"
     namespace        = "kube-system"
     create_namespace = true
-    set = [
-      {
-        name  = "apiService.create"
-        value = "true"
-      },
-      {
-        name  = "metricLabelsAllowlist[0]"
-        value = "nodes=[*]"
-      },
-      {
-        name  = "metricAnnotationsAllowList[0]"
-        value = "nodes=[*]"
-      }
-    ]
+set = [
+  { name = "apiService.create", value = "true" },
+  { name = "metricLabelsAllowlist[0]", value = "nodes=[*]" },
+  { name = "metricAnnotationsAllowList[0]", value = "nodes=[*]" }
+]
   }
 ]
 

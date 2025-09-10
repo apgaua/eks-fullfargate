@@ -1,5 +1,11 @@
 # see: https://terraform-docs.io/user-guide/configuration/formatter
 formatter: markdown table
+content: 
+{{ .Module }}
+
+{{ .Inputs }}
+
+{{ .Outputs }}
 
 # see: https://terraform-docs.io/user-guide/configuration/header-from
 header-from: docs/header.md

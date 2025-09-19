@@ -25,12 +25,12 @@ cluster = [
 
     enabled_cluster_log_types = ["api", "audit", "authenticator", "controllerManager", "scheduler"]
 
-addons = [
-  { name = "vpc-cni", version = "v1.19.5-eksbuild.1" }, # https://docs.aws.amazon.com/eks/latest/userguide/managing-vpc-cni.html
-  { name = "coredns", version = "v1.11.4-eksbuild.2" }, # https://docs.aws.amazon.com/eks/latest/userguide/coredns.html
-  { name = "kube-proxy", version = "v1.33.0-eksbuild.2" }, # https://docs.aws.amazon.com/eks/latest/userguide/managing-kube-proxy.html
-  { name = "eks-node-monitoring-agent", version = "v1.4.0-eksbuild.2" } # https://docs.aws.amazon.com/eks/latest/userguide/workloads-add-ons-available-eks.html#add-ons-eks-node-monitoring-agent
-]
+    addons = [
+      { name = "vpc-cni", version = "v1.19.5-eksbuild.1" },                 # https://docs.aws.amazon.com/eks/latest/userguide/managing-vpc-cni.html
+      { name = "coredns", version = "v1.11.4-eksbuild.2" },                 # https://docs.aws.amazon.com/eks/latest/userguide/coredns.html
+      { name = "kube-proxy", version = "v1.33.0-eksbuild.2" },              # https://docs.aws.amazon.com/eks/latest/userguide/managing-kube-proxy.html
+      { name = "eks-node-monitoring-agent", version = "v1.4.0-eksbuild.2" } # https://docs.aws.amazon.com/eks/latest/userguide/workloads-add-ons-available-eks.html#add-ons-eks-node-monitoring-agent
+    ]
   }
 ]
 
@@ -145,11 +145,11 @@ helm_charts = [
     chart            = "kube-state-metrics"
     namespace        = "kube-system"
     create_namespace = true
-set = [
-  { name = "apiService.create", value = "true" },
-  { name = "metricLabelsAllowlist[0]", value = "nodes=[*]" },
-  { name = "metricAnnotationsAllowList[0]", value = "nodes=[*]" }
-]
+    set = [
+      { name = "apiService.create", value = "true" },
+      { name = "metricLabelsAllowlist[0]", value = "nodes=[*]" },
+      { name = "metricAnnotationsAllowList[0]", value = "nodes=[*]" }
+    ]
   }
 ]
 
